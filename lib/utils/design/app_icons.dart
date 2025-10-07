@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+class AppIcons {
+  AppIcons._();
+
+  static const IconData arrowRight = Icons.arrow_right;
+  static const IconData bankCardAdd = Icons.credit_card;
+  static const IconData bankCard = Icons.credit_card;
+  static const IconData chatBubble = Icons.chat_bubble;
+  static const IconData exclamationMark = Icons.error;
+  static const IconData fileText = Icons.description;
+  static const IconData home = Icons.home;
+  static const IconData mail = Icons.mail;
+  static const IconData mobile = Icons.phone_android;
+  static const IconData notification = Icons.notifications;
+  static const IconData questionMark = Icons.help;
+  static const IconData search = Icons.search;
+  static const IconData shop = Icons.shop;
+}
