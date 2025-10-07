@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppIcons {
   AppIcons._();
 
+  static const IconData add = Icons.add;
   static const IconData arrowRight = Icons.arrow_right;
   static const IconData bankCardAdd = Icons.credit_card;
   static const IconData bankCard = Icons.credit_card;

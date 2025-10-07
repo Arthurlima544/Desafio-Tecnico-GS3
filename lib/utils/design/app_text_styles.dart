@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_colors.dart';
+
 class AppTextStyles {
   static const TextStyle manropeBold14 = TextStyle(
     fontFamily: 'Manrope',
@@ -7,6 +9,7 @@ class AppTextStyles {
     fontSize: 14.0,
     height: 1.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle manropeSemiBold12 = TextStyle(
@@ -15,6 +18,7 @@ class AppTextStyles {
     fontSize: 12.0,
     height: 16.0 / 12.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle manropeRegular16 = TextStyle(
@@ -23,6 +27,7 @@ class AppTextStyles {
     fontSize: 16.0,
     height: 1.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle manropeRegular16LineHeight24 = TextStyle(

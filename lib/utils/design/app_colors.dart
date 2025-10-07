@@ -13,9 +13,9 @@ class AppColors {
   static const Color surfaceVariant = Color(0xFFE6E6EB);
   static const Color outline = Color(0xFFE5E5E5);
   static const LinearGradient loginBackgroundGradient = LinearGradient(
-    colors: <Color>[Color(0xFF0B1C2B), Color(0xFF2B66BC)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    colors: <Color>[Color(0xCC2B66BC), Color(0xCC0B1C2B)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
   );
   static const LinearGradient cardGradient = LinearGradient(
     colors: <Color>[Color(0xFF2B66BC), Color(0xFF132D55)],
