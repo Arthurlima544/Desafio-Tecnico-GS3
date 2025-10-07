@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'gs3_tecnologia',
-    theme: lightTheme(),
+    theme: lightTheme().copyWith(
+      extensions: <ThemeExtension<dynamic>>[const AppSpacings()],
+    ),
     debugShowCheckedModeBanner: false,
     home: const Login(),
   );
