@@ -15,6 +15,7 @@ class AppColors {
   static const Color ligthergray = Color(0xFF828285);
   static const Color lightWhite = Color(0xFFCDCDD1);
   static const Color surfaceVariant = Color(0xFFE6E6EB);
+  static const Color bottomNavText = Color(0xFFB4B4B8);
   static const Color outline = Color(0xFFE5E5E5);
   static const LinearGradient loginBackgroundGradient = LinearGradient(
     colors: <Color>[Color(0xCC2B66BC), Color(0xCC0B1C2B)],
@@ -32,4 +33,5 @@ class AppColors {
     end: Alignment.bottomCenter,
   );
   static const Color transparent = Colors.transparent;
+  static final Color shadow = Colors.black.withValues(alpha: .1);
 }

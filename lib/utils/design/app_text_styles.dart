@@ -77,9 +77,10 @@ class AppTextStyles {
   static const TextStyle mulishBold9 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w700,
-    fontSize: 9.0,
+    fontSize: 10,
     height: 11.0 / 9.0,
     letterSpacing: 0.0,
+    color: AppColors.bottomNavText,
   );
 
   static const TextStyle mulishBold12 = TextStyle(
