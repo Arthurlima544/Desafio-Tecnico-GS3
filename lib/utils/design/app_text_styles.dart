@@ -83,6 +83,15 @@ class AppTextStyles {
     color: AppColors.bottomNavText,
   );
 
+  static final TextStyle mulishBold8 = TextStyle(
+    fontFamily: 'Mulish',
+    fontWeight: FontWeight.w700,
+    fontSize: 8,
+    height: 11.0 / 9.0,
+    letterSpacing: 0.0,
+    color: AppColors.iconCarousel,
+  );
+
   static const TextStyle mulishBold12 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w700,
@@ -97,6 +106,15 @@ class AppTextStyles {
     fontSize: 12.0,
     height: 20.0 / 12.0,
     letterSpacing: 0.0,
+  );
+
+  static const TextStyle mulishBold14 = TextStyle(
+    fontFamily: 'Mulish',
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    height: 1.0,
+    letterSpacing: 0.0,
+    color: AppColors.titleCarousel,
   );
 
   static const TextStyle mulishRegular10 = TextStyle(
