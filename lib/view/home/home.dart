@@ -6,6 +6,7 @@ import 'widgets/favorite_carousel.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/home_bottom_nav_bar.dart';
 import 'widgets/home_separator.dart';
+import 'widgets/latest_transactions.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -52,6 +53,17 @@ class _HomeState extends State<Home> {
                 child: const FavoriteCarousel(),
               ),
               const HomeSeparator(),
+              SizedBox(
+                height: Theme.of(context).extension<AppSpacings>()!.large,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Theme.of(
+                    context,
+                  ).extension<AppSpacings>()!.medium,
+                ),
+                child: LatestTransactions(),
+              ),
             ],
           ),
         ),
