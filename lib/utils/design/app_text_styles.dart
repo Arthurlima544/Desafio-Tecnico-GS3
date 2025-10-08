@@ -142,5 +142,6 @@ class AppTextStyles {
     fontSize: 17.0,
     height: 9.79 / 17.0,
     letterSpacing: -0.41,
+    color: AppColors.white,
   );
 }

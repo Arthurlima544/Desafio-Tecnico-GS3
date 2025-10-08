@@ -7,7 +7,7 @@ class AppIcons {
   static const IconData arrowRight = Icons.arrow_right;
   static const IconData bankCardAdd = Icons.credit_card;
   static const IconData bankCard = Icons.credit_card;
-  static const IconData chatBubble = Icons.chat_bubble;
+  static const IconData chatBubble = Icons.chat_bubble_outline;
   static const IconData exclamationMark = Icons.error;
   static const IconData fileText = Icons.description;
   static const IconData home = Icons.home;
