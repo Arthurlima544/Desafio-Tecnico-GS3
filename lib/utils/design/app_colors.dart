@@ -15,8 +15,11 @@ class AppColors {
   static const Color ligthergray = Color(0xFF828285);
   static const Color lightWhite = Color(0xFFCDCDD1);
   static const Color surfaceVariant = Color(0xFFE6E6EB);
-  static const Color bottomNavText = Color(0xFFB4B4B8);
+  static const Color bottomNav = Color(0xFFB4B4B8);
   static final Color outline = const Color(0xFFE5E5E5).withValues(alpha: .7);
+  static final Color outlineWith20 = const Color(
+    0xFFE5E5E5,
+  ).withValues(alpha: .2);
   static const LinearGradient loginBackgroundGradient = LinearGradient(
     colors: <Color>[Color(0xCC2B66BC), Color(0xCC0B1C2B)],
     begin: Alignment.topCenter,
@@ -39,4 +42,5 @@ class AppColors {
   static const Color titleCarousel = Color(0xFF1A1A1A);
   static final Color iconCarousel = Colors.black.withValues(alpha: .7);
   static final Color lightGrayWith20 = Colors.grey.withValues(alpha: .2);
+  static const Color alert = Color(0xFFFFAC31);
 }

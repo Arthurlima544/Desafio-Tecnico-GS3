@@ -4,7 +4,7 @@ class AppIcons {
   AppIcons._();
 
   static const IconData add = Icons.add;
-  static const IconData arrowRight = Icons.arrow_right;
+  static const IconData arrowFoward = Icons.arrow_forward_ios;
   static const IconData bankCardAdd = Icons.credit_card;
   static const IconData bankCard = Icons.credit_card_outlined;
   static const IconData chatBubble = Icons.chat_bubble_outline;
