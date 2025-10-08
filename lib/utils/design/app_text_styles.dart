@@ -60,7 +60,7 @@ class AppTextStyles {
   static const TextStyle mulishBold16LineHeight20 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w700,
-    fontSize: 16.0,
+    fontSize: 22.0,
     height: 20.0 / 16.0,
     letterSpacing: 0.0,
   );
@@ -119,14 +119,16 @@ class AppTextStyles {
     fontSize: 8.0,
     height: 20.0 / 8.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle mulishRegular14 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w400,
-    fontSize: 14.0,
+    fontSize: 16.0,
     height: 24.0 / 14.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle mulishSemiBold17 = TextStyle(

@@ -22,10 +22,11 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-  static const LinearGradient cardGradient = LinearGradient(
+  static const LinearGradient card1Gradient = LinearGradient(
     colors: <Color>[Color(0xFF2B66BC), Color(0xFF132D55)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+  );
+  static const LinearGradient card2Gradient = LinearGradient(
+    colors: <Color>[Color(0xFF005155), Color(0xFF00292B), Color(0xFF000000)],
   );
   static const LinearGradient homeBackgroundGradient = LinearGradient(
     colors: <Color>[Color(0xFF3C6AB2), Color(0xFFFFFFFF)],
@@ -34,4 +35,5 @@ class AppColors {
   );
   static const Color transparent = Colors.transparent;
   static final Color shadow = Colors.black.withValues(alpha: .1);
+  static final Color chipColor = Colors.white.withValues(alpha: .8);
 }
