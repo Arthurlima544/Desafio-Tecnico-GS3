@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/design/design.dart';
 import 'widgets/home_app_bar.dart';
+import 'widgets/home_bottom_nav_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,11 +22,15 @@ class _HomeState extends State<Home> {
           gradient: AppColors.homeBackgroundGradient,
         ),
       ),
-      const Scaffold(
+      Scaffold(
         backgroundColor: AppColors.transparent,
-        appBar: HomeAppBar(),
-        body: SingleChildScrollView(
+        appBar: const HomeAppBar(),
+        body: const SingleChildScrollView(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start),
+        ),
+        bottomNavigationBar: HomeBottomNavBar(
+          selectedIndex: 0,
+          onItemTapped: (int idx) {},
         ),
       ),
     ],
