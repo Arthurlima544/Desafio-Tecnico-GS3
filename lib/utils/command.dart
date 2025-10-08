@@ -47,3 +47,13 @@ class Command0<T> extends Command<T> {
     await _execute(_action);
   }
 }
+
+class Command1<T, A> extends Command<T> {
+  Command1(this._action);
+
+  final CommandAction1<T, A> _action;
+
+  Future<void> execute(A argument) async {
+    await _execute(() => _action(argument));
+  }
+}
