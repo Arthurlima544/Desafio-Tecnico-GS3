@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/design/design.dart';
 import '../widgets/login_bottom_nav.dart';
+import 'widgets/show_login_animated_modal.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -43,7 +44,9 @@ class Login extends StatelessWidget {
         ),
         Align(
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              showLoginAnimatedModal(context);
+            },
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
