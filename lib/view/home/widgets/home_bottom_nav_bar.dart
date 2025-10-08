@@ -81,7 +81,9 @@ class _BottomNavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color? color = isSelected ? Colors.blue.shade600 : Colors.grey[600];
+    final Color color = isSelected
+        ? AppColors.primaryVariant
+        : AppColors.bottomNav;
 
     return InkWell(
       onTap: onTap,
@@ -99,7 +101,7 @@ class _BottomNavItem extends StatelessWidget {
               label,
               style: isSelected
                   ? AppTextStyles.mulishBold9.copyWith(
-                      color: AppColors.accentBlue,
+                      color: AppColors.primaryVariant,
                     )
                   : AppTextStyles.mulishBold9,
             ),
