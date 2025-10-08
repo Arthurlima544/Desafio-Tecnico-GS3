@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/design/design.dart';
+import 'home_separator.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -29,14 +30,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {},
       ),
     ],
-    bottom: PreferredSize(
-      preferredSize: const Size.fromHeight(5),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: Theme.of(context).extension<AppSpacings>()!.large,
-        ),
-        child: Container(height: 1, color: AppColors.outline),
-      ),
+    bottom: const PreferredSize(
+      preferredSize: Size.fromHeight(5),
+      child: HomeSeparator(),
     ),
   );
 
