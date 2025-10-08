@@ -7,7 +7,7 @@ import '../../../view_model/login/login_view_model.dart';
 class LoginModal extends StatefulWidget {
   const LoginModal({required this.onClose, super.key});
 
-  final VoidCallback onClose;
+  final ValueChanged<bool> onClose;
 
   @override
   State<LoginModal> createState() => _LoginModalState();
@@ -139,7 +139,7 @@ class _LoginModalState extends State<LoginModal> {
                 onPressed: loginViewModel.isFormValid
                     ? () {
                         FocusScope.of(context).unfocus();
-                        widget.onClose();
+                        widget.onClose(true);
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

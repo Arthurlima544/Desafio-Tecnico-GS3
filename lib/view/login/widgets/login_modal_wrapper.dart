@@ -7,7 +7,7 @@ import 'login_modal.dart';
 class LoginModalWrapper extends StatefulWidget {
   const LoginModalWrapper({required this.onClose, super.key});
 
-  final VoidCallback onClose;
+  final ValueChanged<bool> onClose;
 
   @override
   State<LoginModalWrapper> createState() => _LoginModalWrapperState();
