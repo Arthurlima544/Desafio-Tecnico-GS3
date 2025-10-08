@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/design/design.dart';
+import 'widgets/credit_card_carousel.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/home_bottom_nav_bar.dart';
 
@@ -25,8 +26,19 @@ class _HomeState extends State<Home> {
       Scaffold(
         backgroundColor: AppColors.transparent,
         appBar: const HomeAppBar(),
-        body: const SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: Theme.of(context).extension<AppSpacings>()!.medium,
+              ),
+              const CreditCardCarousel(),
+              SizedBox(
+                height: Theme.of(context).extension<AppSpacings>()!.large,
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: HomeBottomNavBar(
           selectedIndex: 0,
