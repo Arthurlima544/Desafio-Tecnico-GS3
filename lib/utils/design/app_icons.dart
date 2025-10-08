@@ -17,4 +17,6 @@ class AppIcons {
   static const IconData questionMark = Icons.help;
   static const IconData search = Icons.search;
   static const IconData shop = Icons.shop;
+  static const IconData visibilityOutlined = Icons.visibility_outlined;
+  static const IconData visibilityOffOutlined = Icons.visibility_off_outlined;
 }

@@ -36,14 +36,25 @@ class AppTextStyles {
     fontSize: 16.0,
     height: 24.0 / 16.0,
     letterSpacing: 0.0,
+    color: AppColors.gray,
+  );
+
+  static const TextStyle manropeRegular16LigthGray = TextStyle(
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    height: 1.0,
+    letterSpacing: 0.0,
+    color: AppColors.ligthGray,
   );
 
   static const TextStyle mulishBold16 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w700,
-    fontSize: 16.0,
+    fontSize: 22,
     height: 1.0,
     letterSpacing: 0.0,
+    color: AppColors.gray,
   );
 
   static const TextStyle mulishBold16LineHeight20 = TextStyle(
@@ -57,7 +68,7 @@ class AppTextStyles {
   static const TextStyle mulishSemiBold16 = TextStyle(
     fontFamily: 'Mulish',
     fontWeight: FontWeight.w600,
-    fontSize: 16.0,
+    fontSize: 18.0,
     height: 1.0,
     letterSpacing: 0.0,
   );
