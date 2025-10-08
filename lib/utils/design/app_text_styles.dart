@@ -71,6 +71,7 @@ class AppTextStyles {
     fontSize: 18.0,
     height: 1.0,
     letterSpacing: 0.0,
+    color: AppColors.white,
   );
 
   static const TextStyle mulishBold9 = TextStyle(

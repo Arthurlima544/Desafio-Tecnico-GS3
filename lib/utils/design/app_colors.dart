@@ -13,6 +13,7 @@ class AppColors {
   static const Color gray = Color(0xFF212121);
   static const Color ligthGray = Color(0xFF363637);
   static const Color ligthergray = Color(0xFF828285);
+  static const Color lightWhite = Color(0xFFCDCDD1);
   static const Color surfaceVariant = Color(0xFFE6E6EB);
   static const Color outline = Color(0xFFE5E5E5);
   static const LinearGradient loginBackgroundGradient = LinearGradient(
