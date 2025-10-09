@@ -185,12 +185,13 @@ class TransactionItem extends StatelessWidget {
           children: <Widget>[
             Text(amount, style: AppTextStyles.mulishBold12),
             if (installments != null)
-              Text(
-                installments!,
-                style: AppTextStyles.mulishBold10.copyWith(
-                  color: AppColors.ligthergray,
+              if (installments != '1x')
+                Text(
+                  installments!,
+                  style: AppTextStyles.mulishBold10.copyWith(
+                    color: AppColors.ligthergray,
+                  ),
                 ),
-              ),
           ],
         ),
       ],
