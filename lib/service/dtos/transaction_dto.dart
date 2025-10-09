@@ -6,27 +6,24 @@ final class TransactionDTO {
     required this.dateTime,
     required this.amount,
     required this.installments,
-    required this.dateGroup,
     required this.hasAlert,
   });
 
   factory TransactionDTO.fromJson(Map<String, dynamic> json) => TransactionDTO(
     uuid: json['uuid'],
     name: json['name'],
-    icon: int.parse(json['icon']),
+    icon: json['icon'],
     dateTime: DateTime.parse(json['dateTime']),
     amount: json['amount'],
     installments: json['installments'],
-    dateGroup: json['dateGroup'],
-    hasAlert: json['hasAlert'],
+    hasAlert: json['hasAlert'] == 1,
   );
 
   final String uuid;
   final String name;
-  final int icon;
+  final String icon;
   final DateTime dateTime;
-  final String amount;
-  final String? installments;
-  final String dateGroup;
+  final double amount;
+  final int installments;
   final bool hasAlert;
 }
