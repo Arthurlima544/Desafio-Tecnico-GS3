@@ -48,3 +48,43 @@ String formatDateTimeToDayMonthHourMinute(DateTime dateTime) {
 
   return '$day/$month às $hour:$minute';
 }
+
+bool isInCurrentInvoice(DateTime transactionDate, int bestDay) {
+  final DateTime now = DateTime.now();
+  final int currentYear = now.year;
+  final int currentMonth = now.month;
+
+  DateTime invoiceStartDate;
+  DateTime invoiceEndDate;
+
+  if (now.day >= bestDay) {
+    invoiceStartDate = DateTime(currentYear, currentMonth, bestDay);
+    invoiceEndDate = DateTime(
+      currentMonth == 12 ? currentYear + 1 : currentYear,
+      currentMonth == 12 ? 1 : currentMonth + 1,
+      bestDay,
+    ).subtract(const Duration(days: 1));
+  } else {
+    invoiceStartDate = DateTime(
+      currentMonth == 1 ? currentYear - 1 : currentYear,
+      currentMonth == 1 ? 12 : currentMonth - 1,
+      bestDay,
+    );
+    invoiceEndDate = DateTime(
+      currentYear,
+      currentMonth,
+      bestDay,
+    ).subtract(const Duration(days: 1));
+  }
+
+  final DateTime transactionDateOnly = DateTime(
+    transactionDate.year,
+    transactionDate.month,
+    transactionDate.day,
+  );
+
+  return transactionDateOnly.isAtSameMomentAs(invoiceStartDate) ||
+      transactionDateOnly.isAtSameMomentAs(invoiceEndDate) ||
+      (transactionDateOnly.isAfter(invoiceStartDate) &&
+          transactionDateOnly.isBefore(invoiceEndDate));
+}
