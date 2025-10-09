@@ -19,6 +19,11 @@ class CreditCardCarousel extends StatelessWidget {
         listenable: viewModel,
         builder: (BuildContext context, Widget? child) => PageView(
           controller: PageController(viewportFraction: 0.9),
+          onPageChanged: (int index) {
+            viewModel.loadTransactionsCommand.execute(
+              viewModel.cards[index].uuid,
+            );
+          },
           children: <Widget>[
             if (viewModel.cards.isNotEmpty)
               for (int i = 0; i < viewModel.cards.length; i++)
