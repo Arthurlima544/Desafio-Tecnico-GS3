@@ -37,3 +37,14 @@ String formatSpecialDate(DateTime dateToFormat) {
     return dayMonthStr;
   }
 }
+
+String formatDateTimeToDayMonthHourMinute(DateTime dateTime) {
+  String padZero(int number) => number.toString().padLeft(2, '0');
+
+  final String day = padZero(dateTime.day);
+  final String month = padZero(dateTime.month);
+  final String hour = padZero(dateTime.hour);
+  final String minute = padZero(dateTime.minute);
+
+  return '$day/$month às $hour:$minute';
+}
