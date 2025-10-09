@@ -10,6 +10,6 @@ final class CardEntity {
   final String uuid;
   final String cardNumber;
   final String cardHolder;
-  final String limit;
-  final String bestDay;
+  final double limit;
+  final int bestDay;
 }
