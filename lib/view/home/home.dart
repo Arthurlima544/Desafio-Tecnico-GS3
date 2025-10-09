@@ -16,6 +16,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
+
+  static final List<Widget> _widgetSelection = <Widget>[
+    const HomeBody(),
+    Container(color: Colors.transparent),
+    Container(color: Colors.transparent),
+    Container(color: Colors.transparent),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => Stack(
     children: <Widget>[
@@ -29,49 +44,44 @@ class _HomeState extends State<Home> {
       Scaffold(
         backgroundColor: AppColors.transparent,
         appBar: const HomeAppBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: Theme.of(context).extension<AppSpacings>()!.medium,
-              ),
-              const CreditCardCarousel(),
-              SizedBox(
-                height: Theme.of(context).extension<AppSpacings>()!.medium,
-              ),
-              const HomeSeparator(),
-              SizedBox(
-                height: Theme.of(context).extension<AppSpacings>()!.large,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: Theme.of(
-                    context,
-                  ).extension<AppSpacings>()!.medium,
-                ),
-                child: const FavoriteCarousel(),
-              ),
-              const HomeSeparator(),
-              SizedBox(
-                height: Theme.of(context).extension<AppSpacings>()!.large,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: Theme.of(
-                    context,
-                  ).extension<AppSpacings>()!.medium,
-                ),
-                child: LatestTransactions(),
-              ),
-            ],
-          ),
-        ),
+        body: _widgetSelection.elementAt(_selectedIndex),
         bottomNavigationBar: HomeBottomNavBar(
-          selectedIndex: 0,
-          onItemTapped: (int idx) {},
+          selectedIndex: _selectedIndex,
+          onItemTapped: _onItemTapped,
         ),
       ),
     ],
+  );
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key});
+
+  @override
+  Widget build(BuildContext context) => SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(height: Theme.of(context).extension<AppSpacings>()!.medium),
+        const CreditCardCarousel(),
+        SizedBox(height: Theme.of(context).extension<AppSpacings>()!.medium),
+        const HomeSeparator(),
+        SizedBox(height: Theme.of(context).extension<AppSpacings>()!.large),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Theme.of(context).extension<AppSpacings>()!.medium,
+          ),
+          child: const FavoriteCarousel(),
+        ),
+        const HomeSeparator(),
+        SizedBox(height: Theme.of(context).extension<AppSpacings>()!.large),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Theme.of(context).extension<AppSpacings>()!.medium,
+          ),
+          child: LatestTransactions(),
+        ),
+      ],
+    ),
   );
 }
