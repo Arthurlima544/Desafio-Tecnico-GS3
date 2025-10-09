@@ -15,6 +15,9 @@ class HomeViewModel extends ChangeNotifier {
   }) : _cardRepository = cardRepository,
        _transactionRepository = transactionRepository {
     loadHomePageCommand = Command0<void>(_loadHomePage)..execute();
+    loadTransactionsCommand = Command1<void, String>(
+      _loadTransactionsForCardOrderedByMostRecent,
+    );
   }
 
   List<CardEntity> cards = <CardEntity>[];
@@ -42,6 +45,7 @@ class HomeViewModel extends ChangeNotifier {
 
   late final Command0<void> loadHomePageCommand;
 
+  late final Command1<void, String> loadTransactionsCommand;
   Future<Result<void>> _loadHomePage() async {
     final Result<List<CardEntity>> cardsResult = await _cardRepository
         .fetchCards();
@@ -52,7 +56,7 @@ class HomeViewModel extends ChangeNotifier {
         notifyListeners();
 
         // When Starting the app, load transactions for the first card
-        await loadTransactionsForCardOrderedByMostRecent(cards[0].uuid);
+        await _loadTransactionsForCardOrderedByMostRecent(cards[0].uuid);
 
         break;
       case Error<List<CardEntity>>():
@@ -64,11 +68,11 @@ class HomeViewModel extends ChangeNotifier {
     return cardsResult;
   }
 
-  Future<Result<void>> loadTransactionsForCardOrderedByMostRecent(
+  Future<Result<void>> _loadTransactionsForCardOrderedByMostRecent(
     String cardId,
   ) async {
     final Result<List<TransactionEntity>> transactionsResult =
-        await _transactionRepository.fetchTransactionsByCardUuid(cards[0].uuid);
+        await _transactionRepository.fetchTransactionsByCardUuid(cardId);
 
     switch (transactionsResult) {
       case Ok<List<TransactionEntity>>(:final List<TransactionEntity> value):
