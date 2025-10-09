@@ -30,7 +30,7 @@ class CreditCardCarousel extends StatelessWidget {
                 CreditCardWidget(
                   cardNumber: viewModel.cards[i].cardNumber,
                   cardHolder: viewModel.cards[i].cardHolder,
-                  availableLimit: null,
+                  availableLimit: viewModel.availableLimit,
                   bestDay: viewModel.cards[i].bestDay.toString(),
                   gradient: AppColors.getLinearGradientForCard(i),
                 )

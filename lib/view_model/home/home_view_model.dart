@@ -44,7 +44,7 @@ class HomeViewModel extends ChangeNotifier {
   final CardRepository _cardRepository;
   final TransactionRepository _transactionRepository;
   CardEntity? selectedCard;
-  double? availableLimit;
+  String? availableLimit;
 
   late final Command0<void> loadHomePageCommand;
 
@@ -95,6 +95,7 @@ class HomeViewModel extends ChangeNotifier {
             'Erro desconhecido ao carregar as transações';
         break;
     }
+    _calculateAvailableLimit();
     notifyListeners();
     return transactionsResult;
   }
@@ -110,6 +111,7 @@ class HomeViewModel extends ChangeNotifier {
     for (final TransactionEntity t in transactionsInCurrentInvoice) {
       totalInCurrentInvoice += t.amount * t.installments;
     }
-    availableLimit = selectedCard!.limit - totalInCurrentInvoice;
+    availableLimit =
+        'R\$ ${(selectedCard!.limit - totalInCurrentInvoice).toStringAsFixed(2).replaceAll('.', ',')}';
   }
 }
