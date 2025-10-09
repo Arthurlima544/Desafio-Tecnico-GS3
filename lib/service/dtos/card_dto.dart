@@ -13,7 +13,7 @@ final class CardDTO {
     uuid: json['uuid'],
     cardNumber: json['cardNumber'],
     cardHolder: json['cardHolder'],
-    limit: json['limit'].toDouble(),
+    limit: json['limit'],
     bestDay: json['bestDay'],
     cvv: json['cvv'],
     expirationDate: json['expirationDate'],
@@ -24,6 +24,6 @@ final class CardDTO {
   final String cardHolder;
   final String expirationDate;
   final String cvv;
-  final String limit;
-  final String bestDay;
+  final double limit;
+  final int bestDay;
 }
