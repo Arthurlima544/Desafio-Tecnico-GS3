@@ -16,8 +16,8 @@ final class TransactionEntity {
   final String name;
   final IconData icon;
   final DateTime dateTime;
-  final String amount;
-  final String? installments;
+  final double amount;
+  final int installments;
   final String dateGroup;
   final bool hasAlert;
 }
