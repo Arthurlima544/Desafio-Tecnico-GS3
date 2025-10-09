@@ -19,6 +19,20 @@ class HomeViewModel extends ChangeNotifier {
 
   List<CardEntity> cards = <CardEntity>[];
   List<TransactionEntity> transactions = <TransactionEntity>[];
+  Map<String, List<TransactionEntity>> get lastTransactionsGroupedByDay {
+    final Map<String, List<TransactionEntity>> groupedTransactions =
+        <String, List<TransactionEntity>>{};
+    final List<TransactionEntity> lastTransactions = transactions.length > 3
+        ? transactions.sublist(0, 3)
+        : transactions;
+    for (final TransactionEntity transaction in lastTransactions) {
+      groupedTransactions
+          .putIfAbsent(transaction.dateGroup, () => <TransactionEntity>[])
+          .add(transaction);
+    }
+
+    return groupedTransactions;
+  }
 
   String? loadCardsErrorMessage;
   String? loadTransactionsErrorMessage;
@@ -38,7 +52,7 @@ class HomeViewModel extends ChangeNotifier {
         notifyListeners();
 
         // When Starting the app, load transactions for the first card
-        await loadTransactionsForCard(cards[0].uuid);
+        await loadTransactionsForCardOrderedByMostRecent(cards[0].uuid);
 
         break;
       case Error<List<CardEntity>>():
@@ -50,12 +64,18 @@ class HomeViewModel extends ChangeNotifier {
     return cardsResult;
   }
 
-  Future<Result<void>> loadTransactionsForCard(String cardId) async {
+  Future<Result<void>> loadTransactionsForCardOrderedByMostRecent(
+    String cardId,
+  ) async {
     final Result<List<TransactionEntity>> transactionsResult =
         await _transactionRepository.fetchTransactionsByCardUuid(cards[0].uuid);
 
     switch (transactionsResult) {
       case Ok<List<TransactionEntity>>(:final List<TransactionEntity> value):
+        value.sort(
+          (TransactionEntity a, TransactionEntity b) =>
+              b.dateTime.compareTo(a.dateTime),
+        );
         transactions = value;
         break;
       case Error<void>():
