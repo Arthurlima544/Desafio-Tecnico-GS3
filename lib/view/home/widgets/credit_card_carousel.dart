@@ -28,7 +28,15 @@ class CreditCardCarousel extends StatelessWidget {
                   availableLimit: null,
                   bestDay: viewModel.cards[i].bestDay.toString(),
                   gradient: AppColors.getLinearGradientForCard(i),
-                ),
+                )
+            else
+              const CreditCardWidget(
+                cardNumber: null,
+                cardHolder: null,
+                availableLimit: null,
+                bestDay: null,
+                gradient: AppColors.card1Gradient,
+              ),
           ],
         ),
       ),
@@ -45,10 +53,10 @@ class CreditCardWidget extends StatelessWidget {
     required this.gradient,
     super.key,
   });
-  final String cardNumber;
-  final String cardHolder;
+  final String? cardNumber;
+  final String? cardHolder;
   final String? availableLimit;
-  final String bestDay;
+  final String? bestDay;
   final Gradient? gradient;
 
   @override
@@ -90,8 +98,26 @@ class CreditCardWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(cardNumber, style: AppTextStyles.mulishRegular14),
-                    Text(cardHolder, style: AppTextStyles.mulishRegular14),
+                    SizedBox(
+                      height: 28,
+                      width: 200,
+                      child: cardNumber == null
+                          ? const Shimmer(
+                              child: Skeleton(
+                                height: 14,
+                                width: double.infinity,
+                              ),
+                            )
+                          : Text(
+                              cardNumber!,
+                              style: AppTextStyles.mulishRegular14,
+                            ),
+                    ),
+                    const SizedBox(height: 4),
+                    if (cardHolder == null)
+                      const Shimmer(child: Skeleton(height: 16, width: 100))
+                    else
+                      Text(cardHolder!, style: AppTextStyles.mulishRegular14),
                   ],
                 ),
               ],
@@ -129,7 +155,10 @@ class CreditCardWidget extends StatelessWidget {
                   'Melhor dia de compra',
                   style: AppTextStyles.mulishRegular8,
                 ),
-                Text(bestDay, style: AppTextStyles.mulishBold16LineHeight20),
+                if (bestDay == null)
+                  const Shimmer(child: Skeleton(height: 24, width: 50))
+                else
+                  Text(bestDay!, style: AppTextStyles.mulishBold16LineHeight20),
               ],
             ),
           ],
