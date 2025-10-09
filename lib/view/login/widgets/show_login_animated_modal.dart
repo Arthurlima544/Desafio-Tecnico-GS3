@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../view_model/home/home_view_model.dart';
 import '../../home/home.dart';
 import 'login_modal_wrapper.dart';
 
@@ -46,7 +48,9 @@ Future<void> showLoginAnimatedModal(BuildContext context) async {
 
     if (context.mounted) {
       await Navigator.of(context).pushReplacement(
-        MaterialPageRoute<dynamic>(builder: (_) => const Home()),
+        MaterialPageRoute<dynamic>(
+          builder: (_) => Home(viewModel: context.read<HomeViewModel>()),
+        ),
       );
     }
   }

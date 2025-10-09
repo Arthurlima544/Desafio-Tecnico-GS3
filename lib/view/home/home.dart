@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/design/design.dart';
+import '../../view_model/home/home_view_model.dart';
 import 'widgets/credit_card_carousel.dart';
 import 'widgets/favorite_carousel.dart';
 import 'widgets/home_app_bar.dart';
@@ -9,7 +10,9 @@ import 'widgets/home_separator.dart';
 import 'widgets/latest_transactions.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({required this.viewModel, super.key});
+
+  final HomeViewModel viewModel;
 
   @override
   State<Home> createState() => _HomeState();
@@ -17,6 +20,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.viewModel.loadHomePageCommand.addListener(_onResult);
+  }
+
+  @override
+  void didUpdateWidget(covariant Home oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    oldWidget.viewModel.loadHomePageCommand.removeListener(_onResult);
+    widget.viewModel.loadHomePageCommand.addListener(_onResult);
+  }
+
+  @override
+  void dispose() {
+    widget.viewModel.loadHomePageCommand.removeListener(_onResult);
+    super.dispose();
+  }
 
   static final List<Widget> _widgetSelection = <Widget>[
     const HomeBody(),
@@ -52,6 +74,13 @@ class _HomeState extends State<Home> {
       ),
     ],
   );
+
+  void _onResult() {
+    if (widget.viewModel.loadHomePageCommand.completed) {
+      print('Home page data loaded successfully');
+      print('cards; ${widget.viewModel.cards.length}');
+    }
+  }
 }
 
 class HomeBody extends StatelessWidget {
