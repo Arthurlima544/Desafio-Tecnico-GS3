@@ -41,6 +41,18 @@ class AppColors {
   static final Color chipColor = Colors.white.withValues(alpha: .8);
   static const Color titleCarousel = Color(0xFF1A1A1A);
   static final Color iconCarousel = Colors.black.withValues(alpha: .7);
+  static final Color skeleton = Colors.black.withValues(alpha: 0.4);
   static final Color lightGrayWith20 = Colors.grey.withValues(alpha: .2);
   static const Color alert = Color(0xFFFFAC31);
+
+  static LinearGradient getLinearGradientForCard(int index) {
+    switch (index % 2) {
+      case 0:
+        return AppColors.card1Gradient;
+      case 1:
+        return AppColors.card2Gradient;
+      default:
+        return AppColors.card1Gradient;
+    }
+  }
 }
