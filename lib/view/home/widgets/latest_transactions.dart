@@ -44,6 +44,26 @@ class LatestTransactions extends StatelessWidget {
     final List<String> dateKeys = viewModel.lastTransactionsGroupedByDay.keys
         .toList();
 
+    if (viewModel.loadHomePageCommand.running ||
+        viewModel.loadTransactionsCommand.running) {
+      return SizedBox(
+        height: MediaQuery.sizeOf(context).height * 0.3,
+        width: double.infinity,
+        child: const Column(
+          children: <Widget>[
+            Spacer(),
+            Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryVariant,
+                strokeWidth: 3,
+              ),
+            ),
+            Spacer(),
+          ],
+        ),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
