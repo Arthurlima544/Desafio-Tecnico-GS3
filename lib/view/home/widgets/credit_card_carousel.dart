@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/design/design.dart';
+import '../../../view_model/home/home_view_model.dart';
+import '../../widgets/shimmer.dart';
+import '../../widgets/skeleton.dart';
 
 class CreditCardCarousel extends StatelessWidget {
   const CreditCardCarousel({super.key});
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    height: MediaQuery.sizeOf(context).height * 0.22,
-    child: PageView(
-      controller: PageController(viewportFraction: 0.9),
-      children: const <Widget>[
-        CreditCardWidget(
-          cardNumber: '•••• 5621',
-          cardHolder: 'GS3 TEC',
-          availableLimit: 'R\$ 7.867,80',
-          bestDay: '20',
-          gradient: AppColors.card1Gradient,
+  Widget build(BuildContext context) {
+    final HomeViewModel viewModel = context.watch<HomeViewModel>();
+
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.22,
+      child: ListenableBuilder(
+        listenable: viewModel,
+        builder: (BuildContext context, Widget? child) => PageView(
+          controller: PageController(viewportFraction: 0.9),
+          children: <Widget>[
+            if (viewModel.cards.isNotEmpty)
+              for (int i = 0; i < viewModel.cards.length; i++)
+                CreditCardWidget(
+                  cardNumber: viewModel.cards[i].cardNumber,
+                  cardHolder: viewModel.cards[i].cardHolder,
+                  availableLimit: null,
+                  bestDay: viewModel.cards[i].bestDay.toString(),
+                  gradient: AppColors.getLinearGradientForCard(i),
+                ),
+          ],
         ),
-        CreditCardWidget(
-          cardNumber: '•••• 1234',
-          cardHolder: 'Cliente',
-          availableLimit: 'R\$ 5.000,00',
-          bestDay: '10',
-          gradient: AppColors.card2Gradient,
-        ),
-      ],
-    ),
-  );
+      ),
+    );
+  }
 }
 
 class CreditCardWidget extends StatelessWidget {
@@ -41,7 +47,7 @@ class CreditCardWidget extends StatelessWidget {
   });
   final String cardNumber;
   final String cardHolder;
-  final String availableLimit;
+  final String? availableLimit;
   final String bestDay;
   final Gradient? gradient;
 
@@ -107,10 +113,13 @@ class CreditCardWidget extends StatelessWidget {
                   'Limite disponível',
                   style: AppTextStyles.mulishRegular8,
                 ),
-                Text(
-                  availableLimit,
-                  style: AppTextStyles.mulishBold16LineHeight20,
-                ),
+                if (availableLimit == null)
+                  const Shimmer(child: Skeleton(height: 24, width: 50))
+                else
+                  Text(
+                    availableLimit!,
+                    style: AppTextStyles.mulishBold16LineHeight20,
+                  ),
               ],
             ),
             Column(
