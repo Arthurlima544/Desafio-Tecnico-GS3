@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../domain/entities/transaction_entity.dart';
 import '../../../utils/design/design.dart';
+import '../../../utils/functions.dart';
+import '../../../view_model/home/home_view_model.dart';
 import 'home_separator.dart';
 
 class LatestTransactions extends StatelessWidget {
@@ -35,67 +39,81 @@ class LatestTransactions extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Row(
-        children: <Widget>[
-          const Text('Últimos lançamentos', style: AppTextStyles.mulishBold14),
-          const Spacer(),
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              children: <Widget>[
-                Text('Ver todos', style: AppTextStyles.mulishBold8),
-                const Icon(
-                  AppIcons.arrowFoward,
-                  color: AppColors.accentBlue,
-                  size: 20,
-                ),
-              ],
+  Widget build(BuildContext context) {
+    final HomeViewModel viewModel = context.watch<HomeViewModel>();
+    final List<String> dateKeys = viewModel.lastTransactionsGroupedByDay.keys
+        .toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            const Text(
+              'Últimos lançamentos',
+              style: AppTextStyles.mulishBold14,
             ),
-          ),
-        ],
-      ),
-      ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: transactions.length,
-        itemBuilder: (BuildContext context, int index) {
-          final Map<String, dynamic> transaction = transactions[index];
-          final bool showDateHeader = transaction.containsKey('date_group');
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              if (showDateHeader)
+            const Spacer(),
+            TextButton(
+              onPressed: () {},
+              child: Row(
+                children: <Widget>[
+                  Text('Ver todos', style: AppTextStyles.mulishBold8),
+                  const Icon(
+                    AppIcons.arrowFoward,
+                    color: AppColors.accentBlue,
+                    size: 20,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: dateKeys.length,
+          itemBuilder: (BuildContext context, int index) {
+            final String dateGroup = dateKeys[index];
+
+            final List<TransactionEntity> transactionsOnThisDay =
+                viewModel.lastTransactionsGroupedByDay[dateGroup]!;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(
                     top: Theme.of(context).extension<AppSpacings>()!.medium,
                     bottom: Theme.of(context).extension<AppSpacings>()!.small,
                   ),
                   child: Text(
-                    transaction['date_group'],
+                    transactionsOnThisDay[0].dateGroup,
                     style: AppTextStyles.mulishBold12.copyWith(
                       color: AppColors.accentBlue,
                     ),
                   ),
                 ),
-              TransactionItem(
-                icon: transaction['icon'],
-                name: transaction['name'],
-                time: transaction['time'],
-                amount: transaction['amount'],
-                installments: transaction['installments'],
-                hasAlert: transaction['has_alert'],
-              ),
-            ],
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) =>
-            const HomeSeparator(),
-      ),
-    ],
-  );
+                ...transactionsOnThisDay.map(
+                  (TransactionEntity transaction) => TransactionItem(
+                    icon: transaction.icon,
+                    name: transaction.name,
+                    time: formatDateTimeToDayMonthHourMinute(
+                      transaction.dateTime,
+                    ),
+                    amount: 'R\$${transaction.amount}',
+                    installments: '${transaction.installments}x',
+                    hasAlert: transaction.hasAlert,
+                  ),
+                ),
+              ],
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              const HomeSeparator(),
+        ),
+      ],
+    );
+  }
 }
 
 class TransactionItem extends StatelessWidget {
