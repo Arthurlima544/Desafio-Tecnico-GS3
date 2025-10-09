@@ -20,4 +20,7 @@ class AppIcons {
   static const IconData visibilityOutlined = Icons.visibility_outlined;
   static const IconData visibilityOffOutlined = Icons.visibility_off_outlined;
   static const IconData receipt = Icons.receipt_long_outlined;
+
+  static IconData getIconByCodePoint(int codePoint) =>
+      IconData(codePoint, fontFamily: 'MaterialIcons');
 }
