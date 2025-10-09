@@ -6,6 +6,7 @@ import '../../domain/entities/transaction_entity.dart';
 import '../../domain/repository/card/card_repository.dart';
 import '../../domain/repository/transaction/transaction_repository.dart';
 import '../../utils/command.dart';
+import '../../utils/functions.dart';
 import '../../utils/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -42,6 +43,8 @@ class HomeViewModel extends ChangeNotifier {
 
   final CardRepository _cardRepository;
   final TransactionRepository _transactionRepository;
+  CardEntity? selectedCard;
+  double? availableLimit;
 
   late final Command0<void> loadHomePageCommand;
 
@@ -53,10 +56,13 @@ class HomeViewModel extends ChangeNotifier {
     switch (cardsResult) {
       case Ok<List<CardEntity>>(:final List<CardEntity> value):
         cards = value;
+        selectedCard = cards[0];
         notifyListeners();
 
         // When Starting the app, load transactions for the first card
         await _loadTransactionsForCardOrderedByMostRecent(cards[0].uuid);
+
+        _calculateAvailableLimit();
 
         break;
       case Error<List<CardEntity>>():
@@ -71,6 +77,8 @@ class HomeViewModel extends ChangeNotifier {
   Future<Result<void>> _loadTransactionsForCardOrderedByMostRecent(
     String cardId,
   ) async {
+    selectedCard = cards.firstWhere((CardEntity c) => c.uuid == cardId);
+    notifyListeners();
     final Result<List<TransactionEntity>> transactionsResult =
         await _transactionRepository.fetchTransactionsByCardUuid(cardId);
 
@@ -89,5 +97,19 @@ class HomeViewModel extends ChangeNotifier {
     }
     notifyListeners();
     return transactionsResult;
+  }
+
+  void _calculateAvailableLimit() {
+    final List<TransactionEntity> transactionsInCurrentInvoice = transactions
+        .where(
+          (TransactionEntity t) =>
+              isInCurrentInvoice(t.dateTime, selectedCard!.bestDay),
+        )
+        .toList();
+    double totalInCurrentInvoice = 0;
+    for (final TransactionEntity t in transactionsInCurrentInvoice) {
+      totalInCurrentInvoice += t.amount * t.installments;
+    }
+    availableLimit = selectedCard!.limit - totalInCurrentInvoice;
   }
 }
