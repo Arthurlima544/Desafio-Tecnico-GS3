@@ -1,0 +1,152 @@
+final Map<String, List<Map<String, Object>>> fakeMapCardToTransactionsResponse =
+    <String, List<Map<String, Object>>>{
+      'a1b2c3d4-e5f6-7890-1234-567890abcdef': fakeCard1Response,
+      'b2c3d4e5-f6a7-8901-2345-67890abcdef1': fakeCard2Response,
+      'c3d4e5f6-a7b8-9012-3456-7890abcdef12': fakeCard3Response,
+    };
+final List<Map<String, Object>> fakeFetchCardsResponse = <Map<String, Object>>[
+  <String, Object>{
+    'uuid': 'a1b2c3d4-e5f6-7890-1234-567890abcdef',
+    'cardNumber': '1234 5678 9012 5621',
+    'cardHolder': 'GS3 TEC',
+    'limit': 10000.00,
+    'bestDay': 20,
+    'cvv': '123',
+    'expirationDate': '10/27',
+  },
+  <String, Object>{
+    'uuid': 'b2c3d4e5-f6a7-8901-2345-67890abcdef1',
+    'cardNumber': '9876 5432 1098 7654',
+    'cardHolder': 'CLIENTE',
+    'limit': 7500.00,
+    'bestDay': 15,
+    'cvv': '456',
+    'expirationDate': '05/29',
+  },
+  <String, Object>{
+    'uuid': 'c3d4e5f6-a7b8-9012-3456-7890abcdef12',
+    'cardNumber': '1122 3344 5566 7788',
+    'cardHolder': 'GS3 TEC VIP',
+    'limit': 12000.00,
+    'bestDay': 25,
+    'cvv': '789',
+    'expirationDate': '01/30',
+  },
+];
+
+final List<Map<String, Object>> fakeCard1Response = <Map<String, Object>>[
+  <String, Object>{
+    'uuid': 'a1a1a1a1-1111-1111-1111-111111111111',
+    'name': 'Apple',
+    'icon': '0xe541',
+    'dateTime': '2025-09-05T22:35:00',
+    'amount': 545.99,
+    'installments': 12,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'a2a2a2a2-2222-2222-2222-222222222222',
+    'name': 'Uber*Uber*Trip',
+    'icon': '0xe8cc',
+    'dateTime': '2025-09-05T15:25:00',
+    'amount': 12.96,
+    'installments': 1,
+    'hasAlert': 1,
+  },
+  <String, Object>{
+    'uuid': 'a3a3a3a3-3333-3333-3333-333333333333',
+    'name': 'Carrefour',
+    'icon': '0xef50',
+    'dateTime': '2025-09-03T09:34:00',
+    'amount': 349.76,
+    'installments': 3,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'a4a4a4a4-4444-4444-4444-444444444444',
+    'name': 'Plano de Celular',
+    'icon': '0xe325',
+    'dateTime': '2025-10-05T00:00:00',
+    'amount': 59.99,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+];
+
+final List<Map<String, Object>> fakeCard2Response = <Map<String, Object>>[
+  <String, Object>{
+    'uuid': 'b1b1b1b1-1111-1111-1111-111111111111',
+    'name': 'Uber',
+    'icon': '0xe531',
+    'dateTime': '2025-10-09T07:45:00',
+    'amount': 18.50,
+    'installments': 1,
+    'hasAlert': 1,
+  },
+  <String, Object>{
+    'uuid': 'b2b2b2b2-2222-2222-2222-222222222222',
+    'name': 'Cinemark',
+    'icon': '0xe40f',
+    'dateTime': '2025-10-04T20:15:00',
+    'amount': 35.00,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'b3b3b3b3-3333-3333-3333-333333333333',
+    'name': 'Spotify',
+    'icon': '0xe030',
+    'dateTime': '2025-10-01T03:00:00',
+    'amount': 21.90,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+];
+
+final List<Map<String, Object>> fakeCard3Response = <Map<String, Object>>[
+  <String, Object>{
+    'uuid': 'c1c1c1c1-1111-1111-1111-111111111111',
+    'name': 'Posto Shell',
+    'icon': '0xe546',
+    'dateTime': '2025-10-08T17:30:00',
+    'amount': 150.00,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'c2c2c2c2-2222-2222-2222-222222222222',
+    'name': 'Farmácia Drogazil',
+    'icon': '0xea68',
+    'dateTime': '2025-10-08T11:00:00',
+    'amount': 89.90,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'c3c3c3c3-3333-3333-3333-333333333333',
+    'name': 'SmartFit',
+    'icon': '0xe54e',
+    'dateTime': '2025-10-06T00:00:00',
+    'amount': 129.90,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+  <String, Object>{
+    'uuid': 'c4c4c4c4-4444-4444-4444-444444444444',
+    'name': 'Renner',
+    'icon': '0xe8a1',
+    'dateTime': '2025-10-04T16:20:00',
+    'amount': 450.00,
+    'installments': 4,
+    'hasAlert': 1,
+  },
+  <String, Object>{
+    'uuid': 'c5c5c5c5-5555-5555-5555-555555555555',
+    'name': 'Livaria Cultura',
+    'icon': '0xe865',
+    'dateTime': '2025-09-30T14:00:00',
+    'amount': 78.50,
+    'installments': 1,
+    'hasAlert': 0,
+  },
+];
