@@ -1,5 +1,11 @@
 # Desafio-Tecnico-GS3
 
+
+
+https://github.com/user-attachments/assets/549fa322-179a-4c22-a058-0b63ad2507b2
+
+
+
 ## Índice
 - [Instalação](#instalação)
 - [Arquitetura](#arquitetura)
